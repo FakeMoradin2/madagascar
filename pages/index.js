@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Geist, Geist_Mono } from "next/font/google";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,15 +14,6 @@ const geistMono = Geist_Mono({
 
 export default function Home() {
   const videoRef = useRef(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [resourcesLoaded, setResourcesLoaded] = useState({
-    video: false,
-    images: {
-      camaleon: false,
-      comida: false,
-      bandera: false
-    }
-  });
 
   useEffect(() => {
     if (videoRef.current) {
@@ -31,38 +22,6 @@ export default function Home() {
       });
     }
   }, []);
-
-  useEffect(() => {
-    // Verificar si todos los recursos están cargados
-    const allResourcesLoaded = 
-      resourcesLoaded.video && 
-      Object.values(resourcesLoaded.images).every(status => status);
-
-    if (allResourcesLoaded) {
-      setIsLoading(false);
-    }
-  }, [resourcesLoaded]);
-
-  const handleImageLoad = (imageName) => {
-    setResourcesLoaded(prev => ({
-      ...prev,
-      images: {
-        ...prev.images,
-        [imageName]: true
-      }
-    }));
-  };
-
-  if (isLoading) {
-    return (
-      <div className="fixed inset-0 bg-green-800 flex items-center justify-center">
-        <div className="text-white text-center">
-          <h2 className="text-2xl font-bold mb-4">Cargando Madagascar...</h2>
-          <div className="w-16 h-16 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="relative w-full h-[50vh] md:h-screen opacity-75">
@@ -75,7 +34,6 @@ export default function Home() {
           loop
           playsInline
           preload="auto"
-          onLoadedData={() => setResourcesLoaded(prev => ({ ...prev, video: true }))}
         >
           <source src="/MadagascarHer.mp4" type="video/mp4" />
           Tu navegador no soporta el elemento de video.
@@ -94,12 +52,10 @@ export default function Home() {
               src='/camaleon.jpg'
               alt='Camaleón'
               className='w-full rounded-lg shadow-xl'
-              onLoad={() => handleImageLoad('camaleon')}
             />
             <div className='text-white space-y-4'>
               <p className='text-sm md:text-base lg:text-lg'>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit...
               </p>
             </div>
           </div>
@@ -108,15 +64,13 @@ export default function Home() {
           <div className='grid md:grid-cols-2 gap-8 items-center'>
             <div className='text-white space-y-4 md:order-1 order-2'>
               <p className='text-sm md:text-base lg:text-lg'>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit...
               </p>
             </div>
             <img
               src='/comida-madagascar.jpg'
               alt='comida'
               className="w-full rounded-lg shadow-xl md:order-2 order-1"
-              onLoad={() => handleImageLoad('comida')}
             />
           </div>
 
@@ -126,12 +80,10 @@ export default function Home() {
               src='/Flag_of_Madagascar.svg'
               alt='bandera'
               className='w-full rounded-lg shadow-xl'
-              onLoad={() => handleImageLoad('bandera')}
             />
             <div className='text-white space-y-4'>
               <p className='text-sm md:text-base lg:text-lg'>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit...
               </p>
             </div>
           </div>
