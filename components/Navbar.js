@@ -31,8 +31,8 @@ export default function Navbar() {
               <Link href="/artista" className="text-white hover:text-green-400 transition-colors">
                 Personnage famoso
               </Link>
-              <Link href="/interactivo" className="text-white hover:text-green-400 transition-colors">
-                Interactivo
+              <Link href="/vestimenta" className="text-white hover:text-green-400 transition-colors">
+              Vêtements Traditionnels
               </Link>
             </div>
           </div>
@@ -40,7 +40,7 @@ export default function Navbar() {
       </div>
 
       {/* Versión desktop */}
-      <div className="hidden md:flex justify-between items-center p-6">
+      <div className="hidden md:flex justify-evenly items-center p-6">
         <Link 
           href="/" 
           className="text-white hover:text-green-400 transition-colors text-4xl"
@@ -48,20 +48,20 @@ export default function Navbar() {
           Madagascar
         </Link>
         <div className="flex space-x-8">
-          <Link 
-            href="/artista" 
+          <Link
+            href="/artista"
             className="text-white hover:text-green-400 transition-colors text-4xl"
           >
             Personnage famoso
           </Link>
-          <Link 
-            href="/interactivo" 
+          <Link
+            href="/vestimenta"
             className="text-white hover:text-green-400 transition-colors text-4xl"
           >
-            Interactivo
+            Vêtements Traditionnels
           </Link>
         </div>
       </div>
     </nav>
   );
-} 
+}
